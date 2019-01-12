@@ -20,10 +20,10 @@ function check {
 }
 
 url="$1"
-tmpfile=$(mktemp /tmp/health_check_url.XXXXXX)
+tmpfile=$(mktemp /tmp/health_check_url.XXXXXX)  # must use this to save output of check function
 exec 3>"$tmpfile"
 rm "$tmpfile"
 curl -LsSf -o "/dev/null" "$url" 2>"/dev/null"
-check $? >&3 || exit 1
+check $? >&3 || exit 1  # should email when failing
 
 exit 0
