@@ -19,7 +19,7 @@ function check {
     fi
 }
 
-[ ! -z $1 ] && url="$1" || echo "No url supplied"
+[ ! -z $1 ] && url="$1" || { echo "No url supplied"; exit 2; }
 [ ! -z $2 ] && email="$2"
 tmpfile=$(mktemp /tmp/health_check_url.XXXXXX)  # must use this to save output of check function
 exec 3>"$tmpfile"
